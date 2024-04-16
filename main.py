@@ -31,17 +31,20 @@ def export_contacts():
     print("Контакты успешно экспортированы в файл exported_phonebook.txt")
 
 def copy_line():
-    line_number = int(input("Введите номер строки для копирования: "))
-    with open("phonebook.txt", "r") as file:
-        lines = file.readlines()
-        try:
-            copied_line = lines[line_number - 1]
-            with open("copied_line.txt", "a") as new_file:
-                new_file.write(copied_line)
-            print("Строка успешно скопирована.")
-        except IndexError:
-            print("Неверный номер строки.")
-
+    try:
+        line_number = int(input("Введите номер строки для копирования: "))
+        with open("phonebook.txt", "r") as file:
+            lines = file.readlines()
+            try:
+                copied_line = lines[line_number - 1]
+                with open("copied_line.txt", "a") as new_file:
+                    new_file.write(copied_line)
+                print("Строка успешно скопирована.")
+            except IndexError:
+                print("Неверный номер строки.")
+    except ValueError:
+        print("Введите число.")
+        
 def main():
     while True:
         print("\nМеню:")
